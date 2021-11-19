@@ -311,7 +311,7 @@ admin.initializeApp({
 
 //////////////////////////////////////////////////////////////////////////
 app.get('/',(req,res) =>{
-    res.send('Az Security System Server is working ')
+    res.send('Dream House final Server is working... ')
 });
 
 app.listen(port, () => {
