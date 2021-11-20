@@ -39,17 +39,17 @@ async function verifyToken(req, res, next) {
 async function run() {
     try {
       await client.connect();
-      const database = client.db("az-security");
-      const productsCollection = database.collection("products");
+      const database = client.db("dream-house");
+      const partnersCollection = database.collection("partners");
       const usersCollection = database.collection("users");
       const reviewsCollection = database.collection("reviews");
       const ordersCollection = database.collection("orders");
 
- ////////////////////// Get Products From DataBase ////////////////////
-      app.get("/products", async (req, res) => {
-        const cursor = productsCollection.find({});
-        const products = await cursor.toArray();
-        res.send(products);
+ ////////////////////// Get partners From DataBase ////////////////////
+      app.get("/partners", async (req, res) => {
+        const cursor = partnersCollection.find({});
+        const partners = await cursor.toArray();
+        res.send(partners);
       });
 //////////////////////////////////////////////////////////////////////////
 
@@ -106,11 +106,11 @@ async function run() {
       
 
 ////////////////////// GET Single Product by Id  /////////////////////////
-      app.get("/products/:productId", async (req, res) => {
+      app.get("/partners/:productId", async (req, res) => {
         const id = req.params.productId;
         console.log("getting specific packages", id);
         const query = { _id: ObjectId(id) };
-        const product = await productsCollection.findOne(query);
+        const product = await partnersCollection.findOne(query);
         res.send(product);
       });
 //////////////////////////////////////////////////////////////////////   
@@ -138,13 +138,13 @@ async function run() {
       
       
 //////////// Get All Data From Database to Ui after verify token  //////////
-      app.get('/products',verifyToken, async (req, res) => {
+      app.get('/partners',verifyToken, async (req, res) => {
         const email = req.query.email;
         const date =new Date(req.query.date).toLocaleDateString();
         const query = {email: email,date:date}
-        const cursor = productsCollection.find(query);
-        const products = await cursor.toArray()
-        res.json(products);
+        const cursor = partnersCollection.find(query);
+        const partners = await cursor.toArray()
+        res.json(partners);
       })
 /////////////////////////////////////////////////////////////////////////////
       
@@ -168,12 +168,12 @@ async function run() {
 
   
 
-/////////////// Post Products Data To database Api ////////////////
-      app.post('/products', async (req, res) => {
-        const productsData = req.body
-        const result = await productsCollection.insertOne(productsData)
+/////////////// Post partners Data To database Api ////////////////
+      app.post('/partners', async (req, res) => {
+        const partnersData = req.body
+        const result = await partnersCollection.insertOne(partnersData)
              res.json(result)
-             console.log("data connected from add products")
+             console.log("data connected from add partners")
       })     
 ////////////////////////////////////////////////////////////////////
       
