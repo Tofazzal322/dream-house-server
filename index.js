@@ -257,8 +257,9 @@ async function run() {
       
 //////////////////////////  Service Account /////////////////////////////
     
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-
+// const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+const serviceAccount = './dream-house-6477c-firebase-adminsdk-vi3uz.json'
+     
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
