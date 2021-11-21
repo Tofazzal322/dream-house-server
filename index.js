@@ -106,8 +106,8 @@ async function run() {
       
 
 ////////////////////// GET Single Product by Id  /////////////////////////
-      app.get("/partners/:productId", async (req, res) => {
-        const id = req.params.productId;
+      app.get("/partners/:id", async (req, res) => {
+        const id = req.params.id;
         console.log("getting specific packages", id);
         const query = { _id: ObjectId(id) };
         const product = await partnersCollection.findOne(query);
